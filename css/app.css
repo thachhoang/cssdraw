@@ -1,0 +1,96 @@
+#container {
+    width: 100%;
+    height: 100%;
+}
+#drawer {
+    position: absolute;
+    overflow: hidden;
+    top: 0; bottom: 0;
+    left: 0; width: 500px;
+    font-family: Arial;
+    font-size: 10pt;
+}
+#drawer input, #drawer select {
+    font-family: Arial;
+    font-size: 10pt;
+}
+#viewport {
+    position: absolute;
+    overflow: hidden;
+    top: 0; bottom: 0;
+    left: 500px; right: 0;
+    background: url(images/bg-transparent.png);
+}
+#viewport iframe {
+    display: block;
+    height: 100%;
+    left: 0; top: 0;
+    position: absolute;
+    width: 100%;
+}
+#editor { 
+    position: absolute;
+    top: 30px; bottom: 0;
+    left: 0; right: 0;
+    margin: 0;
+}
+#fancy-editor {
+    padding: 20px;
+}
+#fancy-editor div.label {
+    width: 150px;
+    display: block;
+    float: left;
+    clear: left;
+    margin: 5px 0;
+}
+#fancy-editor input[type=text] {
+    margin: 3px 0;
+}
+#fancy-editor input.mini-input {
+    width: 50px;
+}
+#rotation-handle {
+    position: absolute;
+    cursor: pointer;
+    top: 5px; right: 5px;
+    height: 6px; width: 6px;
+    border: 1px solid black;
+    background-color: black;
+}
+#skewx-handle {
+    position: absolute;
+    cursor: pointer;
+    top: 5px; left: 50%;
+    height: 6px; width: 6px; margin-left: -4px;
+    border: 1px solid black;
+    background-color: black;
+}
+#skewy-handle {
+    position: absolute;
+    cursor: pointer;
+    top: 50%; right: 5px;
+    height: 6px; width: 6px; margin-top: -4px;
+    border: 1px solid black;
+    background-color: black;
+}
+#border-selection-all {
+    margin-left: 0; margin-bottom: 10px;
+}
+#selector {
+    display: none;
+    border: 2px dashed red;
+    position: absolute; top: 0; left: 0;
+    pointer-events: none;
+    background: none !important;
+}
+#cv-origin-selector {
+    width: 40px; height: 40px;
+    border: 1px solid lightgrey;
+    position: relative;
+    display: inline-block; vertical-align: middle;
+    margin: 5px 0;
+}
+#cv-origin-selector input[type=radio] {
+    position: absolute; margin: 3px;
+}
