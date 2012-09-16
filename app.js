@@ -31,6 +31,8 @@ function init(){
             updateSel('');
         });
         setUI(mode);
+        $("#loader").hide();
+        $("#container").show();
     });
 }
 function updateSel(mode){

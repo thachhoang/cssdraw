@@ -13,12 +13,16 @@
 	<script type="text/javascript" src="libs/jscolor/jscolor.js"></script>
 	<script type="text/javascript" src="libs/transform/jquery.transform-0.9.3.min.js"></script>
     <script type="text/javascript" src="app.js"></script>
-	<div id="container">
+    <div id="loader">Any minute now...</div>
+	<div id="container" style="display:none;">
         <div id="drawer">
-			<a href="javascript:void(0)" onclick="switchUI()">
-				<span id="mode-text">Use text editor</span>
-				<span id="mode-gui">Use fancy editor</span>
-			</a>
+			<div id="topbar">
+                <a href="javascript:void(0)" onclick="switchUI()">
+                    <span id="mode-text">Use text editor</span>
+                    <span id="mode-gui">Use fancy editor</span>
+                </a>
+                <div id="credits">Made by Thach Hoang. <a href="https://github.com/thachhoang/cssdraw">Source and docs on GitHub</a>.</div>
+            </div>            
 			<pre id="editor"></pre>
 			<div id="fancy-editor">
                 Yeah, fancy. <span id="output"></span><br/><br/>
