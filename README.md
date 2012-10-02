@@ -9,4 +9,9 @@ Prototype of a browser-based graphics editor for CSS. Current features include:
 
 [View demo](http://thachhoang.github.com/cssdraw/).
 
-More to follow...
+#### Libraries ####
+
+- [Ace, Ajax.org Cloud9 Editor](https://github.com/ajaxorg/ace)
+- [jQuery](https://github.com/jquery/jquery) and [jQuery UI](https://github.com/jquery/jquery-ui)
+- [jQuery 2D transformation plugin](https://github.com/heygrady/transform/)
+- [JSColor, JavaScript / HTML color picker](https://github.com/odvarko/JSColor)
