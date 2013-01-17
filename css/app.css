@@ -1,7 +1,5 @@
-body {
-    font-family: Arial;
-    font-size: 10pt;
-}
+pre { line-height: normal; }
+#loader { padding: 20px; }
 #container {
     width: 100%;
     height: 100%;
@@ -10,19 +8,14 @@ body {
     position: absolute;
     overflow: hidden;
     top: 0; bottom: 0;
-    left: 0; width: 500px;
-    font-family: Arial;
-    font-size: 10pt;
-}
-#drawer input, #drawer select {
-    font-family: Arial;
-    font-size: 10pt;
+	left: 0; width: 360px;
+	padding-top: 10px;
 }
 #viewport {
     position: absolute;
     overflow: hidden;
     top: 0; bottom: 0;
-    left: 500px; right: 0;
+    left: 400px; right: 0;
     background: url(images/bg-transparent.png);
 }
 #viewport iframe {
@@ -32,19 +25,17 @@ body {
     position: absolute;
     width: 100%;
 }
-#topbar { padding: 10px; }
-#credits {
-    float: right;
-}
 #editor { 
     position: absolute;
-    top: 30px; bottom: 0;
+    top: 45px; bottom: 0;
     left: 0; right: 0;
     margin: 0;
+	background-color: white;
 }
-#fancy-editor {
-    padding: 20px;
-}
+#topbar {}
+#fancy-editor {}
+#fancy-editor .row-fluid { padding: 10px 0; }
+/*
 #fancy-editor div.label {
     width: 150px;
     display: block;
@@ -58,6 +49,7 @@ body {
 #fancy-editor input.mini-input {
     width: 50px;
 }
+*/
 #rotation-handle {
     position: absolute;
     cursor: pointer;
@@ -82,9 +74,6 @@ body {
     border: 1px solid black;
     background-color: black;
 }
-#border-selection-all {
-    margin-left: 0; margin-bottom: 10px;
-}
 #selector {
     display: none;
     border: 2px dashed red;
@@ -92,6 +81,11 @@ body {
     pointer-events: none;
     background: none !important;
 }
+.row-fluid input { width: 55px; margin-right: 10px; }
+.row-fluid label { min-width: 65px; margin-right: 5px; }
+.row-fluid select { width: 85px; margin-right: 10px; }
+#cv-origin-selector label { min-width: auto; margin-right: 7px; }
+/*
 #cv-origin-selector {
     width: 40px; height: 40px;
     border: 1px solid lightgrey;
@@ -102,3 +96,4 @@ body {
 #cv-origin-selector input[type=radio] {
     position: absolute; margin: 3px;
 }
+*/

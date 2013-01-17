@@ -125,13 +125,13 @@ function setUI(m){
             //alert(val);
             updateSel('');
         });
-        $('#color-adjuster input').change(function(e){
+        $('.color-adjuster input').change(function(e){
             updateSelBasicColors(e);
         });
-        $('#color-adjuster select[name="border-style"]').change(function(){
+        $('.color-adjuster select[name="border-style"]').change(function(){
             updateSelBasicColors();
         });
-        $('#color-adjuster select[name="border-selection"]').change(function(){
+        $('.color-adjuster select[name="border-selection"]').change(function(){
             if (curr != null) updateBasicColorFields(curr);
         });
         clearTimeout(t);
@@ -254,7 +254,7 @@ function newElement(){
         'width':  150,
         'height': 100,
         'position': 'absolute',
-        'background-color': '#'+Math.floor(Math.random()*16777215).toString(16)
+        'background-color': '#'+(Math.random()*0xFFFFFF<<0).toString(16)
     });
     $shape.appendTo($container);
 }
@@ -389,7 +389,7 @@ function enablePosFields(f){
     var target = posFields.find('input[name='+f+']')
     //target.removeAttr('disabled');//.show();
     target.addClass('active').removeClass('inactive');
-    target.prev('.label').show();
+    target.prev('label').show();
     target.show();
 }
 function disablePosFields(f){
@@ -397,7 +397,7 @@ function disablePosFields(f){
     var target = posFields.find('input[name='+f+']');
     //target.attr('disabled', 'disabled');//.hide();
     target.addClass('inactive').removeClass('active');
-    target.prev('.label').hide();
+    target.prev('label').hide();
     target.hide();
 }
 function updatePosFields(){
@@ -552,17 +552,17 @@ function updateFancyFields(){
     updateBasicColorFields(d);
 }
 function updateBasicColorFields(d){
-    var borderColorPicker = $('#color-adjuster input[name="border-color"]');
-    var widthInput = $('#color-adjuster input[name="border-width"]');
-    var styleSelect = $('#color-adjuster select[name="border-style"]');
-    var borderSelect = $('#color-adjuster select[name="border-selection"]');
-    var bgColorPicker = $('#color-adjuster input[name="background-color"]');
+    var borderColorPicker = $('.color-adjuster input[name="border-color"]');
+    var widthInput = $('.color-adjuster input[name="border-width"]');
+    var styleSelect = $('.color-adjuster select[name="border-style"]');
+    var borderSelect = $('.color-adjuster select[name="border-selection"]');
+    var bgColorPicker = $('.color-adjuster input[name="background-color"]');
     var border = borderSelect.val();
     var width = d.css(border + '-width')
     var style = d.css(border + '-style');
     widthInput.val(width);
     styleSelect.val(style);
-    $('#color-adjuster input.color').each(function(){
+    $('.color-adjuster input.color').each(function(){
         var prop = '';
         if (this.id == borderColorPicker.attr('id')){
             prop = border + '-color';
@@ -580,15 +580,15 @@ function updateBasicColorFields(d){
 function updateSelBasicColors(e){
     if (curr == null) return;
     d = curr;
-    var borderColorPicker = $('#color-adjuster input[name="border-color"]');
-    var widthInput = $('#color-adjuster input[name="border-width"]');
-    var styleSelect = $('#color-adjuster select[name="border-style"]');
-    var borderSelect = $('#color-adjuster select[name="border-selection"]');
+    var borderColorPicker = $('.color-adjuster input[name="border-color"]');
+    var widthInput = $('.color-adjuster input[name="border-width"]');
+    var styleSelect = $('.color-adjuster select[name="border-style"]');
+    var borderSelect = $('.color-adjuster select[name="border-selection"]');
     var color = borderColorPicker.val();
     var width = widthInput.val();
     var style = styleSelect.val();
     var border = borderSelect.val();
-    if ($('#color-adjuster input[name="all-borders"]:checked').length > 0){
+    if ($('.color-adjuster input[name="all-borders"]:checked').length > 0){
         border = 'border';
     }
     if (e != null){
@@ -604,7 +604,7 @@ function updateSelBasicColors(e){
         }
     }
     d.css(border, '#' + color + ' ' + width + ' ' + style);
-    var bgColor = $('#color-adjuster input[name="background-color"]').val();
+    var bgColor = $('.color-adjuster input[name="background-color"]').val();
     d.css('background-color', '#' + bgColor);
     updateSel('');
 }

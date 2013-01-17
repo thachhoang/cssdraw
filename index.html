@@ -1,87 +1,107 @@
 <!DOCTYPE HTML>
-<html>
+<html lang="en">
 <head>
     <title>CSS Draw</title>
+	<meta content="text/html;charset=utf-8" http-equiv="Content-Type">
+	<meta content="utf-8" http-equiv="encoding">
 	<link rel="stylesheet" type="text/css" href="css/app.css" />
     <link rel="stylesheet" type="text/css" href="libs/jqueryui/1.8/themes/base/jquery-ui.css" />
+	<link rel="stylesheet" type="text/css" href="libs/bootstrap/css/bootstrap.css" />
 </head>
 <body>
-	<script type="text/javascript" src="libs/jquery/1.7.1/jquery.js"></script>
-	<script type="text/javascript" src="libs/jqueryui/1.8.18/jquery-ui.js"></script>
-	<script type="text/javascript" src="libs/ace/ace-noconflict.js" charset="utf-8"></script>
-    <script type="text/javascript" src="libs/ace/mode-html-noconflict.js" charset="utf-8"></script>
-	<script type="text/javascript" src="libs/jscolor/jscolor.js"></script>
-	<script type="text/javascript" src="libs/transform/jquery.transform-0.9.3.min.js"></script>
-    <script type="text/javascript" src="app.js"></script>
     <div id="loader">Any minute now...</div>
 	<div id="container" style="display:none;">
-        <div id="drawer">
-			<div id="topbar">
-                <a href="javascript:void(0)" onclick="switchUI()">
-                    <span id="mode-text">Use text editor</span>
-                    <span id="mode-gui">Use fancy editor</span>
-                </a>
-                <div id="credits">Made by Thach Hoang. <a href="https://github.com/thachhoang/cssdraw">Source and docs on GitHub</a>.</div>
-            </div>            
-			<pre id="editor"></pre>
-			<div id="fancy-editor">
-                Yeah, fancy. <span id="output"></span><br/><br/>
-				<div id="general-props">
-					<div class="label"><label for="general-props-id"    >ID:     </label></div><input id="general-props-id"     class="adjuster"      name="id"     type="text" /><br/>
-					<div class="label"><label for="general-props-width" >Width:  </label></div><input id="general-props-width"  class="adjuster size" name="width"  type="text" /><br/>
-					<div class="label"><label for="general-props-height">Height: </label></div><input id="general-props-height" class="adjuster size" name="height" type="text" /><br/>
+        <div class="container-fluid" id="drawer">
+			<div class="row-fluid" id="topbar">
+				<div class="span12">
+					<a class="btn" href="javascript:void(0)" onclick="switchUI()">
+						<span id="mode-text">Use text editor</span>
+						<span id="mode-gui">Use fancy editor</span>
+					</a>
+					<a class="pull-right" href="https://github.com/thachhoang/cssdraw" target="_new">Source on GitHub</a>
 				</div>
-				<br/><br/>
-                <div class="label"><label>Origin of element<br/>(relative to its parent):</label></div>
-                <div id="cv-origin-selector">
-                    <input type="radio" name="origin" value="tl" style="top:0; left:0;" checked="checked" />
-                    <input type="radio" name="origin" value="tr" style="top:0; right:0;" />
-                    <input type="radio" name="origin" value="bl" style="bottom:0; left:0;" />
-                    <input type="radio" name="origin" value="br" style="bottom:0; right:0;" />
-                </div>
-                <div id="pos-adjuster">
-                    <div class="label"><label for="pos-adjuster-left"  >From left:   </label></div><input id="pos-adjuster-left"   class="adjuster pos" name="left" type="text" />
-                    <div class="label"><label for="pos-adjuster-right" >From right:  </label></div><input id="pos-adjuster-right"  class="adjuster pos" name="right" type="text" />
-                    <div class="label"><label for="pos-adjuster-top"   >From top:    </label></div><input id="pos-adjuster-top"    class="adjuster pos" name="top" type="text" />
-                    <div class="label"><label for="pos-adjuster-bottom">From bottom: </label></div><input id="pos-adjuster-bottom" class="adjuster pos" name="bottom" type="text" />
-                </div>
-				<br/><br/>
-				<div id="color-adjuster">
-					<div class="label"><label for="color-adjuster-fill">Fill: </label></div><input id="color-adjuster-fill" class="color" type="text" name="background-color" /><br/>
-					<br/>
-					<div class="label"><label for="color-adjuster-border">Border: </label>
+            </div>
+			<pre id="editor"></pre>
+			<div class="row-fluid" id="fancy-editor">
+				<form class="form-inline">
+				<div class="container-fluid" style="padding: 0;">
+					<div class="row-fluid">
+						<span id="output">Select an element.</span>
+					</div>
+					<div class="row-fluid">
+						<div class="btn-group">
+							<a class="btn" href="javascript:void(0)" onclick="newElement()">New child</a>
+							<a class="btn" href="javascript:void(0)" onclick="clearTransform()">Clear transforms</a>
+							<a class="btn" href="javascript:void(0)" onclick="deleteSel()">Delete</a>
+						</div>
+					</div>
+					<div class="row-fluid">
+						<label for="general-props-id"    >ID:     </label><input id="general-props-id"     class="adjuster"      name="id"     type="text" />
+					</div>
+					<div class="row-fluid">
+						<label for="general-props-width" >Width:  </label><input id="general-props-width"  class="adjuster size" name="width"  type="text" />
+						<label for="general-props-height">Height: </label><input id="general-props-height" class="adjuster size" name="height" type="text" />
+					</div>
+					<div class="row-fluid" id="cv-origin-selector">
+						<label class="radio">Origin (relative to parent):</label>
+						<label class="radio"><input type="radio" name="origin" value="tl" style="top:0; left:0;" checked="checked" /> TL</label>
+						<label class="radio"><input type="radio" name="origin" value="tr" style="top:0; right:0;" /> TR</label>
+						<label class="radio"><input type="radio" name="origin" value="bl" style="bottom:0; left:0;" /> BL</label>
+						<label class="radio"><input type="radio" name="origin" value="br" style="bottom:0; right:0;" /> BR</label>
+					</div>
+					<div class="row-fluid" id="pos-adjuster">
+						<label for="pos-adjuster-left"  >From left:   </label><input id="pos-adjuster-left"   class="adjuster pos" name="left" type="text" />
+						<label for="pos-adjuster-right" >From right:  </label><input id="pos-adjuster-right"  class="adjuster pos" name="right" type="text" />
+						<label for="pos-adjuster-top"   >From top:    </label><input id="pos-adjuster-top"    class="adjuster pos" name="top" type="text" />
+						<label for="pos-adjuster-bottom">From bottom: </label><input id="pos-adjuster-bottom" class="adjuster pos" name="bottom" type="text" />
+					</div>
+					<div class="row-fluid color-adjuster">
+						<label for="color-adjuster-fill">Fill: </label>
+						<input id="color-adjuster-fill" class="color" type="text" name="background-color" />
+					</div>
+					<div class="row-fluid color-adjuster">
+						<label for="color-adjuster-first">Border: </label>
+						<select id="color-adjuster-first" name="border-style">
+							<option value="none">none</option>
+							<option value="dotted">dotted</option>
+							<option value="dashed">dashed</option>
+							<option value="solid">solid</option>
+							<option value="double">double</option>
+							<option value="groove">groove</option>
+							<option value="ridge">ridge</option>
+							<option value="inset">inset</option>
+							<option value="outset">outset</option>
+						</select>
+						<input class="mini-input" type="text" name="border-width" value="0px" />
+						<input class="color" type="text" name="border-color" />
+					</div>
+					<div class="row-fluid color-adjuster">
+						<label for="color-adjuster-first" style="visibility: hidden;">Border: </label>
 						<select name="border-selection">
 							<option value="border-top">top</option>
 							<option value="border-left">left</option>
 							<option value="border-bottom">bottom</option>
 							<option value="border-right">right</option>
 						</select>
+						<label class="checkbox" for="border-selection-all">
+							<input id="border-selection-all" type="checkbox" name="all-borders" checked="checked" />
+							Apply to all 4 borders
+						</label>
 					</div>
-					<input id="color-adjuster-border" class="color" type="text" name="border-color" /><br />
-					<input class="mini-input" type="text" name="border-width" />
-					<select name="border-style">
-						<option value="none">none</option>
-						<option value="dotted">dotted</option>
-						<option value="dashed">dashed</option>
-						<option value="solid">solid</option>
-						<option value="double">double</option>
-						<option value="groove">groove</option>
-						<option value="ridge">ridge</option>
-						<option value="inset">inset</option>
-						<option value="outset">outset</option>
-					</select>
-					<br/>
-					<div class="label"></div>
-					<input id="border-selection-all" type="checkbox" name="all-borders" checked="checked" />
-					<label for="border-selection-all">Apply new settings to all 4 borders</label>
 				</div>
-				<a href="javascript:void(0)" onclick="newElement()">New element</a><br/>
-				<a href="javascript:void(0)" onclick="clearTransform()">Clear transforms of element</a><br/><br/>
-				<a href="javascript:void(0)" onclick="deleteSel()">Delete element</a>
+				</form>
 			</div>
 		</div>
         <div id="viewport"></div>
 	</div>
 	<div id="selector"></div>
+	<script type="text/javascript" src="libs/jquery/1.7.1/jquery.js"></script>
+	<script type="text/javascript" src="libs/jqueryui/1.8.18/jquery-ui.js"></script>
+	<script type="text/javascript" src="libs/bootstrap/js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="libs/ace/ace-noconflict.js" charset="utf-8"></script>
+    <script type="text/javascript" src="libs/ace/mode-html-noconflict.js" charset="utf-8"></script>
+	<script type="text/javascript" src="libs/jscolor/jscolor.js"></script>
+	<script type="text/javascript" src="libs/transform/jquery.transform-0.9.3.min.js"></script>
+    <script type="text/javascript" src="app.js"></script>
 </body>
 </html>
